@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: GATEWAY-SERVICE
+
+  cloud:
+    gateway:
+      routes:
+        - id: processpension-service
+          uri: lb://PROCESSPENSION-SERVICE
+          predicates:
+            - Path=/processpension/**
+        - id: pensiondetail-service
+          uri: lb://PENSIONDETAIL-SERVICE
+          predicates:
+            - Path=/pensiondetail/**
+    
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+  instance:
+    hostname: localhost
+    
+    
+server:
+  port: 8989
