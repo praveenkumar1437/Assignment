@@ -1,14 +1,29 @@
 package com.example.demo.main;
 
-import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "order")
 public class Order {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int orderId;
 	private float totalAmount;
-	private Date orderDate;
+	private String orderDate;
 	private Status orderStatus;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Address address;
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<OrderLine> orderLinesList;
 
 	public int getOrderId() {
@@ -27,11 +42,11 @@ public class Order {
 		this.totalAmount = totalAmount;
 	}
 
-	public Date getOrderDate() {
+	public String getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
 
@@ -49,6 +64,14 @@ public class Order {
 
 	public void setOrderLinesList(List<OrderLine> orderLinesList) {
 		this.orderLinesList = orderLinesList;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 }
