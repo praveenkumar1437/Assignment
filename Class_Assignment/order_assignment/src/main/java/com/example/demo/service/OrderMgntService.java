@@ -34,7 +34,7 @@ public class OrderMgntService {
 	}
 
 	public Order getOrderByPincode(int pincode) {
-
-		return null;
+		return orderMgntDAO.getOrderByPincode(pincode);
+		 
 	}
 }

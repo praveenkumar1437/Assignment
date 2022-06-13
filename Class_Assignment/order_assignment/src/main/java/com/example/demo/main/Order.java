@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.example.demo.main.Status.OrderStatus;
+
 @Entity
 @Table(name = "order")
 public class Order {
@@ -20,7 +22,7 @@ public class Order {
 	private int orderId;
 	private float totalAmount;
 	private String orderDate;
-	private Status orderStatus;
+	private OrderStatus orderStatus;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 	@OneToMany(cascade = CascadeType.ALL)
@@ -50,12 +52,12 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
-	public Status getOrderStatus() {
+	public OrderStatus getOrderStatus() {
 		return orderStatus;
 	}
 
-	public void setOrderStatus(Status orderStatus) {
-		this.orderStatus = orderStatus;
+	public void setOrderStatus(OrderStatus open) {
+		this.orderStatus = open;
 	}
 
 	public List<OrderLine> getOrderLinesList() {
